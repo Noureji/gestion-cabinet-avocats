@@ -1,0 +1,126 @@
+*Authentification:
+    --LogIn
+    --LogOut
+    --Forget Password
+
+*se connecter 1 fois 
+	*-email
+	*-mode passe inisial(nom+@+prenom)
+	*-methode de (Modify mode pass)
+	 
+*se connecter 
+	*email 
+	*mode passe 
+
+---------------------------------SuperAdmin----------------------------:
+ { Avatar,Name et prenom, Adresse,email,mode pass ,....)
+
+	### se conecter ###
+	{email, mode pass }
+
+	###### gestion Compte #####
+	--- Modification Info de profil par =>methode( def Modify() )
+
+	###### (Administration des Etats du compteUseAdmin )####
+		{info USeAdmin ( Avatar,Name et prenom, Adresse,email,mode pass ,etatCompte ....) }
+	-- Creation Admin =>methode(create(info))
+	-- Modification Info_Admin(idAdmin)
+		
+    	-- Read Info_admin()
+    	-- Delete Info_admin(id)
+
+	#### Gestion Account Admin,Accont Cabinet  ###
+		{info USeAdmin ( Avatar,Name et prenom, Adresse,email,mode pass ,etatCompte ....) }
+		{info USeAdmin ( Avatar,Name et prenom, Adresse,email,mode pass ,etatCompte ....) }
+	->def Modification EtatCompteAdmin(idAdmin ou bien Cabinet ,etaCompte)
+	 -- Activate Account
+    	 -- Desactivate Account
+    	 -- Block Account
+
+-----------------------------------------Admin et superAdmin----------------------
+	###### gestion des abonnement #####
+		{id_abonnement ,nom, adresse, duree, prix}
+	
+		methode (__str ___(affichage tous les abonements))
+
+	###crud des abonnement###
+		methode => ajouter abonement(par cette attribut)
+			=> supprimer abonnemt (id abonement)
+			=> modifier abonement (id )
+			//=> bloquer et deloquer abonement (id abonement )
+
+	###### CRUD des Cabinets ####
+		{numero,logo,nom,adress,gemail, Employer ,abonnement,Date Creation,etaCompte ...}
+		(voir exemple crud )
+
+	##### importation cabinet,ou bien avocats #####
+
+	=>  methode importer($file,$type ){
+		// Ouvrir le fichier et lire les données de cabinets ou bien des avocats 
+    		// Pour chaque enregistrement lu, créer un objet Cabine et l'ajouter à la liste des cabines		
+
+		la méthode importer est définie comme une méthode statique
+
+---------------------------------------------AvocatP et membreBureau--------
+	#### CRUD des MembresBureau (Voir le crud)
+		memberBureau(..,idbureau,description,tel,poste ...)
+
+	#### affectation des comptes userMB
+dans class  USmB => (nom, adress,....compte =None)
+dans class  l'avocatsP => {...,compte}
+	creationCompte(les attribut USerMP),objet : AffectationCompte
+	l'objet Compte affecté à UserMB.
+	La méthode affecterCompte prend en argument un objet Compte et le stocke dans cet attribut.
+
+alors USmB => (nom, adress,....compte =compte)
+	dans les methode de userMB => affecterCompte(compte):
+
+	#### Gestion des Fiches Client(Membre ,avocat)
+	Ajouter RDV, Imprimer Facture, Ajouter Reglement
+	 	--crud des clients(voir crud)
+	 	--crud des rendez-vous=>
+				-AjouterRD($objet,$type)
+				- Modifie(IDRDv)
+				- suprprimer(idRD))
+				- rechercheRDv()	
+		->RecherchMulticritère (par client{nom...},type{kadiya}...)
+		->Ajouter RDV, Imprimer Facture, Ajouter Reglement ,...
+
+	### gestion CalandrieAvocats ###
+	clandrie->TypeRDv(titre, description, bgColor, dureeMoyenne, typeNotification)
+		///Historique des RDV, Reglement ,dossiers,les Jugements, factures 
+		Ajouter RDV(), Imprimer Facture(), Ajouter Reglement(),ajouterCharge
+
+	. RDV avec des client ou bien dans les tibunaux 
+		- Add RDV
+		- display Calender 
+		- display ListeAttente
+		- Notifications 
+
+--------------------ex-------------------------------------------
+class fichier :
+    (self, client, RDV, reglement=[], jugement=[], facture=[]):
+class historique 
+	: client, rdv=[], reglement=[], jugement=[], facture=[]...
+def rechercher(dossiers, critere, valeur):
+def creer(client):
+    return Dossier(client)
+def mettreAJour(dossier, champ, valeur):
+    setattr(dossier, champ, valeur)
+def supprimer(fichiers, fichier):
+    dossiers.remove(fichier)
+def ajouterRDV(dossier, rdv):
+    dossier.rdv.append(rdv)
+def imprimerFacture(dossier):
+def ajouterReglement(dossier, reglement):
+
+class TypeRDV {titre, description, bgColor, dureeMoyenne, typeNotification}
+
+
+	### Gestion des DossierJustice 
+		dossier(Les parties impliquées dans l'affaire,faits)
+(voir les  attrubit de Dossier justice)
+
+
+
+	

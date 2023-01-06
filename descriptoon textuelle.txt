@@ -1,0 +1,45 @@
+description textuelle:=> ensemble de use cas en va le traite
+ et en rechereche detail el les scenario de cette use cas 
+
+ex use case d'inscription d'acteur 
+
+----sommaire d'indentificaton ----
+
+1-titre s'identifier 
+2- ce cas d'utilisation permet de se connecter a notre espace 
+3-{les acteur (client ,avocat ,uadmin ...)}--(acteur principal)
+	-> systeme d'autorisation (secondaire )
+
+#date creation      # date de mise ajour 
+
+======> description des scénarios 
+
+////précondition (quelle sont les condition pour le quelle use demarer )
+-> l'actuer doit connecter avec un reseau 
+-> le lecteur et la connexion avec le systeme d'autorisation on pérationnelle 
+
+======> scénario nominale
+
+1- utilisateur choisé notre espace 
+2- le systeme demander l'utilisateur entre votre info 
+3- la verefication  entre le systeme et le lecteur et la connexion est bien 
+4- l'utilisateur remplir a travers code et email
+5- le systeme comparer avec l'email et code dorigine un par un 
+6- le systeme demander une autorisation au systeme autoriser
+7- le systeme d'autorisation donne son accord et l'acces le compte 
+
+
+=======> scénario alternatifs
+
+A1- code d'indentification provisionement erroné 
+l'enchainement A1 demarer au point 5 du scénario nominal 
+
+5)- le systeme autorisation (securiter ) indique que le code est errone 
+6)- le systeme demander a l'utilisateur pour saiser le code d'origine
+
+A2- email and code errone .....
+
+======> scénario d'erreur 
+E1 aucun  connextion entre le systeme autorisation et BD 
+l'enchainement E1 demarré au point 3 de scénario nominal 
+4) le systeme d'autorisation est informé le cas d'utilisation se termine en chec 
