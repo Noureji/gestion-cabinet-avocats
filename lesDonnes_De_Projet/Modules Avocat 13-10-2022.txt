@@ -1,0 +1,45 @@
+Acteurs : 
+	. UserAdmin de type SuperAdmin (administrateur de l'application pas des client) M1M2M3
+	. UserAdmin (administrateur de l'application pas des client) M1M2M3
+	. UserAvocatP (Avocat Président c'est le directeur du cabinet) M4
+	. userMB (employé du cabinet) M4
+
+Les Modules (c'est le useCase généal) : (encadrant)
++ M1 Gestion des Administrateurs de l'Application (à faire par l'encadrant de l'entreprise ATLECS à Distance)
+		[UserAdmin] : SeConnecter(....), dashboard, gestion de Profil, Creation de nouveau U.Admin,ModificationUA, suppressionAdmin, et l'administration des comptes -activer/bloquer- enfin la gestion de l'oublie du pswd.		
+		
++ M2 Gestion des Abonnements : (encadrant)
+	CabinetAvocat (0..*)---------------------(1..1)AbonnementCabinet(1..*)----------------(1..1)Abonnement
+	CRUD des Abonnements (C.U.D.R)
+	CRUD CabinetAvocat + Import (C.U.R.D.Importation)
+	
++ M3 Paramétrage : (vous meme) c'est un module qui prépare de la data par nos administrateur pour être exploitable dans l'application au utilisateur finaux 
+	Les données du system de la justice 
+		. Juridiction
+		. Tribunaux
+		. Barreaux
+		. Specialites
+		....
+M4 Gestion des MembresBureau Cabinet Avocat (Encadrant et les stagiaires)
+	. MembresBureau (CRUD) 
+	. Affectation des Comptes userMB 
+	. seConnecter
+	. GestionProfil AvocatP et MembresBureau
+	. ForgotPassword
+M5 Gestion des Fiches Client et du CalandrierAvocat 
+	. Client (CRUD-RechecherdesHistorique)
+	. typeRDV (CRUD)
+	. RDV avec des client ou bien dans les tibunaux (jalassate=session)
+
+M6 Gestion des DossierJustice 
+	. Dossier 
+	. PartiePrenantes
+	. AffectationEmpJ
+	. avocatsPartieAdvers
+	. avocatsClient
+	. Sessions
+	...
+
+M7 Gestion des Factures/Charges et Reglements 
+
+M8 Scrapper le services mahamkim.ma 
