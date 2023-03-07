@@ -1,0 +1,390 @@
+II. Conception :
+		1. Définition des diagramme d'interactions généraux (MVC)
+		
+		User			Controlleur				Model			BD
+			-------->Show()
+			<--viewAdd--
+			-saisirdata->verify
+						 save------------------>Create---------->
+							<-----notif---	  <----Notif----
+							---getallfromTable>
+											get ------------>
+													<------
+									<------
+		<------SuccessMesage redergerPage
+							Consultatuion avec data
+
+
+							
+		2. Définition des diagramme d'interactions (dans le cas de besoin de tt les uses cases si besoin) et des diagramme d'Etat si besoin et diagramme de classe de conecption de la portion décrite 
+			a. cATEGORIE Produits CRUD voir le cas général
+				
+			b.
+			c. 
+			d. 
+		3. Diagramme de classe de conception
+		
+		4. Dictionnaires de Données :
+			a. 
+			b. 
+			c. 
+			...
+	III. Maquetage :
+		Représenté les Ecans de l'IHM maquette et réseaux de navigations et tableaux résumer et descriptif 
+		
+	Partie 3 Etude Technique (M202 & M205)
+		I. Outils de Gestion de Projets :
+			1. c'est quoi gitHub + le lien de votre projet 
+			2. c'est quoi Jira + captures d'écrans + lien invitation (productubacklog, affectation les etats les tâches ...
+			3. Sonar tests captures ecrans 10 diffréements testes (mazal le code donc c'est quoi sonar )
+			4. ?? devops avec M. EL QOrtobi 
+		II. L'architecture de l'application 
+			??
+			
+	Partie 4 Développement (M205)
+		Maquettes 
+	Conclusion
+	Annexes
+
+--------------------------------------------------------------------------------------------------------------
+Mvc avec le super Admin 
+Le modèle (Model) représente les données sur les abonnements, les avocats et les cabinets, ainsi que les règles métier qui s'appliquent à ces données
+. Il peut inclure des classes "Abonnement", "Avocat" et "Cabinet" qui stockent les informations sur chaque abonnement
+, avocat et cabinet, respectivement, et des méthodes pour accéder à ces informations ou les modifier.
+La vue (View) représente l'interface utilisateur de l'application pour effectuer les tâches de l'acteur superAdmin,
+ c'est-à-dire les formulaires et les pages qui permettent de créer, de lire, de mettre à jour et de supprimer des abonnements,
+ des avocats et des cabinets, ainsi que les pages pour importer ces éléments.
+Le contrôleur (Controller) agit comme un intermédiaire entre le modèle et la vue. Lorsque l'utilisateur soumet un formulaire ou effectue une autre action,
+ le contrôleur reçoit la requête,
+------------------------------------------------------------------------------------------------------------
+                                 +------------+
+                                 |   Compte   |
+                                 +------------+
+                                 |            |
+                                 |  - id      |
+                                 |  - nom     |
+                                 |  - prenom  |
+                                 |  - email   |
+                                 |  - motDePasse|
+                                 |  - etat    |
+                                 |            |
+                                 +------------+
+                                 |           |
+                                 |+bloquer()  |
+                                 |+debloquer()|
+                                 |            |
+                                 +------------+
+
+    +----------------+       +--------------+       +----------------+       +--------------+
+    | Etat initial   | ----> | Compte       | ----> | Compte bloqué  | ----> | Compte débloqué|
+    |                |       | actif        |       |                |       |               |
+    +----------------+       +--------------+       +----------------+       +--------------+
+          |                      |                        |                        |
+          |                      |                        |                        |
+          |                      v                        v                        v
+          |      +----------------+        +----------------+        +----------------+
+          |      | Demande de     |        | Demande de     |        | Demande de    |
+          +------| blocage de    |--------| déblocage de   |--------| blocage de    |
+          |      | compte         |        | compte         |        | compte         |
+          |      +----------------+        +----------------+        +----------------+
+          |                      |                        |                        |
+          |                      |                        |                        |
+          |                      v                        v                        v
+          |      +----------------+        +----------------+        +----------------+
+          |      | Validation de  |        | Validation de  |        | Validation de |
+          +------| demande de     |--------| demande de     |--------| demande de    |
+          |      | blocage        |        | déblocage      |        | blocage       |
+          |      +----------------+        +----------------+        +----------------+
+--------------------------------------------------------------------------------------------------------
+supperAdmin(gestion etatde compte )
+
+
+			Controlleur				Model				BD
+
+			-------->ShowEtaCompte(idCompte)					<----getData
+							<--viewCompte--
+
+			------>ModifyEtaCompte
+
+							 save()------------>Create()---------->
+
+							<-----notif---	  <----Notif----
+
+							---getallCompte()-------->
+											get ------------>
+															<------
+									<------
+		<------SuccessMesage
+		<-------------redergerPageDacceul
+							Consultatuion avec data
+
+-------------------------------------------------------------------------------------------------------
+                             
+
+---------diagrame de class abonemment -----------
+// Classe Abonnement (modèle)
+class Abonnement {
+  private $id;
+  private $nom;
+  private $prix;
+  
+  public function __construct($id, $nom, $prix) {
+    $this->id = $id;
+    $this->nom = $nom;
+    $this->prix = $prix;
+  }
+  
+  public function getId() {
+    return $this->id;
+  }
+  
+  public function getNom() {
+    return $this->nom;
+  }
+  
+  public function getPrix() {
+    return $this->prix;
+  }
+  
+  public function setNom($nom) {
+    $this->nom = $nom;
+  }
+  
+  public function setPrix($prix) {
+    $this->prix = $prix;
+  }
+  
+  public function enregistrer() {
+    // Enregistre l'abonnement dans la base de données
+  }
+  
+  public function supprimer() {
+    // Supprime l'abonnement de la base de données
+  }
+}
+
+// Classe AvocatP (modèle)
+class AvocatP {
+  private $id;
+  private $nom;
+  private $prenom;
+  private $cabinet;
+  
+  public function __construct($id, $nom, $prenom, $cabinet) {
+
+    $this->id = $
+----------------------------------------------------------------------------------------------------
+
+
+    +------------+       +--------------+       +---------------+       +----------------+
+    | Etat initial| ----> |Notification  | ----> |Rendez-vous    | ----> |Rendez-vous     |
+    |             |       |envoyée       |       |demandé        |       |confirmé        |
+    +------------+       +--------------+       +---------------+       +----------------+
+          |                   |                     |                     |
+          |                   |                     |                     |
+          |                   v                     v                     v
+          |       +-----------------+       +----------------+       +----------------+
+          |       | Notification    |       | Rendez-vous    |       | Rendez-vous    |
+          +-------| lue             |------- | confirmé       |------- | confirmé par   |
+                  +-----------------+       +----------------+       | le client      |
+                                         |                            +----------------+
+                                         |
+                                         v
+                                +----------------+
+                                | Rendez-vous    |
+                                | confirmé par   |
+                                | le client      |
+                                +----------------+
+
+-------------------------------------------------------------------------------------------------
+
+
+    +------------+       +--------------+       +---------------+       +---------------+
+    | Etat initial| ----> |Ajout de fiche| ----> |Fiche créée   | ----> |Fiche mise à jour|
+    |             |       |client        |       |               |       |                |
+    +------------+       +--------------+       +---------------+       +---------------+
+          |                   |                     |                     |
+          |                   |                     |                     |
+          |                   v                     v                     v
+          |       +-----------------+       +----------------+       +----------------+
+          |       | Modification de|       | Fiche mise à   |       | Suppression de|
+          +-------| fiche client    |------- | jour          |------- | fiche client  |
+          |       +-----------------+       +----------------+       +----------------+
+          |                     |                     |                     |
+          |                     |                     |                     |
+          |                     v                     v                     v
+          |       +-----------------+       +----------------+       +----------------+
+          |       | Ajout de facture|       | Facture        |       | Suppression de|
+          +-------| à la fiche       |------- | imprimée      |------- | facture       |
+                  +-----------------+       +----------------+       +----------------+
+   
+---------------------------------------------------------------------------------------------------
+
+    +---------------+       +----------------+       +-----------------+       +----------------+
+    | Etat initial  | ----> | Création de    | ----> | Abonnement     | ----> | Abonnement     |
+    |               |       | abonnement     |       | créé           |       | mis à jour     |
+    +---------------+       +----------------+       +-----------------+       +----------------+
+          |                      |                        |                        |
+          |                      |                        |                        |
+          |                      v                        v                        v
+          |      +----------------+        +----------------+        +----------------+
+          |      | Modification de|        | Abonnement     |        | Suppression de|
+          +------| abonnement     |--------| mis à jour     |--------| abonnement     |
+          |      +----------------+        +----------------+        +----------------+
+      ---------------------------------------------------------------------------------------------------
+Useradmin (importation cabinet ))			Controlleur				Model			BD
+			---Add----->Show()
+			<--viewAdd--
+
+			-saiser les info cabinet ----->verify()
+
+							 save()------------>Create()---------->
+
+							<-----notif---	  <----Notif----
+
+							---getallfromTable()-------->
+											get ------------>
+															<------
+									<------
+		<------SuccessMesage
+		<-------------redergerPage
+							Consultatuion avec data
+
+
+------------------------------------------------gestion employer -----------------------------------------------
+                      +-----------------------+
+                      | User/Admin (Add)      |
+                      +-----------------------+
+                                    |
+                                    | Show()
+                                    |
+                                    v
+                      +-----------------------+
+                      |  View/UI              |
+                      +-----------------------+
+                                    |
+                                    |
+                                    | viewAdd()
+                                    |
+                                    v
+                      +-----------------------+
+                      | User/Admin (Add)      |
+                      +-----------------------+
+                                    |
+                                    |
+                                    | verify()
+                                    |
+                                    v
+                      +-----------------------+
+                      |  Model               |
+                      +-----------------------+
+                                    |
+                                    |
+                                    | save()
+                                    |
+                                    v
+                      +-----------------------+
+                      |  Database            |
+                      +-----------------------+
+                                    |
+                                    |
+                                    | Create()
+                                    |
+                                    v
+                      +-----------------------+
+                      | User/Admin (Add)      |
+                      +-----------------------+
+                                    |
+                                    |
+                                    | notif()
+                                    |
+                                    v
+                      +-----------------------+
+                      |  View/UI              |
+                      +-----------------------+
+                                    |
+                                    |
+                                    | notif()
+                                    |
+                                    v
+                      +-----------------------+
+                      | User/Admin (Get All)  |
+                      +-----------------------+
+                                    |
+                                    |
+                                    | getAllFromTable()
+                                    |
+                                    v
+                      +-----------------------+
+                      |  Model               |
+                      +-----------------------+
+                                    |
+                                    |
+                                    | get()
+                                    |
+                                    v
+                      +-----------------------+
+                      |  Database            |
+                      +-----------------------+
+                                    |
+                                    |
+                                    v
+                      +-----------------------+
+                      |  Model               |
+                      +-----------------------+
+                                    |
+                                    |
+                                    v
+                      +-----------------------+
+                      |  View/UI              |
+                      +-----------------------+
+                                    |
+                                    |
+                                    | renderPage()
+                                    |
+                                    v
+                      +-----------------------+
+                      | User/Admin (Get All)  |
+                      +-----------------------+
+                                    |
+                                    |
+                                    | successMessage()
+                                    |
+                                    v
+                      +-----------------------+
+                      |  View/UI              |
+                      +-----------------------+
+------------------------------------------------------------------------------------------------------                      +-----------------------+
+                      |  Client              |
+                      +-----------------------+
+                                    |
+                                    | Demander rendez-vous
+                                    |
+                                    v
+                      +-----------------------+
+                      |  Contrôleur          |
+                      +-----------------------+
+                                    |
+                                    |
+                                    | Valider demande
+                                    |
+                                    v
+                      +-----------------------+
+                      |  Modèle             |
+                      +-----------------------+
+                                    |
+                                    |
+                                    | Mettre à jour calendrier
+                                    |
+                                    v
+                      +-----------------------+
+                      |  Vue (Calendrier)   |
+                      +-----------------------+
+                                    |
+                                    |
+                                    | Afficher rendez-vous
+                                    |
+                                    v
+                      +-----------------------+
+                      |  Client              |
+                      +-----------------------+
